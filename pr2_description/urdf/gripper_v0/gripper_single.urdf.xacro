@@ -20,7 +20,11 @@
 
   <xacro:property name="keypoint1_both_x" value="0.071" />
   <xacro:property name="keypoint1_l_y" value="0.0032" />
-  <xacro:property name="keypoint1_r_y" value="-{keypoint1_l_y}" />
+  <xacro:property name="keypoint1_r_y" value="-${keypoint1_l_y}" />
+
+  <xacro:property name="keypoint2_both_x" value="0.119" />
+  <xacro:property name="keypoint2_l_y" value="0.007" />
+  <xacro:property name="keypoint2_r_y" value="-${keypoint2_l_y}" />
 
   <xacro:macro name="pr2_finger_limits_v0">
     <!-- limits on passive finger and finger top joints without
@@ -193,7 +197,7 @@
         <origin xyz="0 0 0" rpy="${M_PI} 0 0" />
         <geometry>
           <mesh filename="package://pr2_description/meshes/gripper_v0/l_finger_tip.stl"  />
-        </geometry>
+NN        </geometry>
       </collision>
     </link>
     
@@ -283,6 +287,22 @@
       <child link="${side}_gripper_tool_frame"/>
     </joint>
     <link name="${side}_gripper_tool_frame"/>
+
+    <joint name="${side}_gripper_l_keypoint2_joint" type="fixed">
+      <axis xyz="0 0 1" />
+      <origin xyz="${keypoint2_both_x} ${keypoint2_l_y} 0.0" rpy="0 0 0" />
+      <parent link="${name}_link"/>
+      <child link="${side}_gripper_l_keypoint2_link"/>
+    </joint>
+    <link name="${side}_gripper_l_keypoint2_link"/>
+
+    <joint name="${side}_gripper_r_keypoint2_joint" type="fixed">
+      <axis xyz="0 0 1" />
+      <origin xyz="${keypoint2_both_x} ${keypoint2_r_y} 0.0" rpy="0 0 0" />
+      <parent link="${name}_link"/>
+      <child link="${side}_gripper_r_keypoint2_link"/>
+    </joint>
+    <link name="${side}_gripper_r_keypoint2_link"/>
 
     <!-- actuated motor screw joint -->
     <link name="${side}_gripper_motor_slider_link">
