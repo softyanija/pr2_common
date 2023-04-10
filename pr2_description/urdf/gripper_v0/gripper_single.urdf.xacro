@@ -18,6 +18,10 @@
   <xacro:property name="finger_to_finger_tip_x"     value="0.09137" />
   <xacro:property name="palm_to_finger_x"           value="0.07691" />
 
+  <xacro:property name="keypoint1_both_x" value="0.071" />
+  <xacro:property name="keypoint1_l_y" value="0.0032" />
+  <xacro:property name="keypoint1_r_y" value="-{keypoint1_l_y}" />
+
   <xacro:macro name="pr2_finger_limits_v0">
     <!-- limits on passive finger and finger top joints without
          transmission are not enforced by safety controllers.
@@ -42,8 +46,6 @@
       <child link="${prefix}_l_finger_link"/>
     </joint>
     <link name="${prefix}_l_finger_link">
-
-
       <inertial>
         <mass value="0.17126" />
         <origin xyz="${0.03598} 0.01730 -0.00164" rpy="0 0 0" />
@@ -69,6 +71,18 @@
         </geometry>
       </collision>
     </link>
+    
+    <joint name="${prefix}_l_keypoint1_joint" type="revolute">
+      <axis xyz="0 0 1" />
+      <!-- <origin xyz="${0.09137} ${-0.00495} 0" rpy="0 0 0" /> -->
+      <origin xyz="${keypoint1_both_x} ${keypoint1_l_y} 0.0" rpy="0 0 0" />
+      <xacro:pr2_finger_limits_v0/>
+      <dynamics damping="${finger_tip_damping}" />
+      <parent link="${prefix}_l_finger_link"/>
+      <child link="${prefix}_l_keypoint1_link"/>
+    </joint>
+    <link name="${prefix}_l_keypoint1_link"/>
+    
 
     <!-- Finger proximal digit -->
 
@@ -160,7 +174,6 @@
     </joint>
     <link name="${prefix}_r_finger_tip_link">
 
-
       <inertial>
         <mass value="0.04419" />
         <origin xyz="${0.00423} ${-0.00284} ${0.0}" rpy="0 0 0" />
@@ -183,6 +196,17 @@
         </geometry>
       </collision>
     </link>
+    
+    <joint name="${prefix}_r_keypoint1_joint" type="revolute">
+      <axis xyz="0 0 1" />
+      <!-- <origin xyz="${0.09137} ${-0.00495} 0" rpy="0 0 0" /> -->
+      <origin xyz="${0.071} ${-0.0032} 0.0" rpy="0 0 0" />
+      <xacro:pr2_finger_limits_v0/>
+      <dynamics damping="${finger_tip_damping}" />
+      <parent link="${prefix}_r_finger_link"/>
+      <child link="${prefix}_r_keypoint1_link"/>
+    </joint>
+    <link name="${prefix}_r_keypoint1_link"/>
 
     <!-- extensions -->
     <xacro:pr2_finger_gazebo_v0 prefix="${prefix}" reflect="${reflect}" />
@@ -192,12 +216,7 @@
 
   <xacro:macro name="pr2_gripper_v0" params="side reflect name *origin gear_ratio screw_reduction theta0 phi0 t0 L0 h a b r">
 
-    <!-- <joint name="${side}_gripper_palm_joint" type="fixed"> -->
-    <!--   <xacro:insert_block name="origin"/> -->
-    <!--   <parent link="${parent}"/> -->
-    <!--   <child link="${side}_gripper_palm_link"/> -->
-    <!-- </joint> -->
-    <!-- <link name="${side}_gripper_palm_link"> -->
+    
     <link name="${name}_link">
       <inertial>
         <mass value="0.58007" />
