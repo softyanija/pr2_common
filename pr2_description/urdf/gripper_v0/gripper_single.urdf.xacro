@@ -84,7 +84,7 @@
       </collision>
     </link>
     
-    <joint name="${prefix}_l_keypoint1_joint" type="revolute">
+    <joint name="${prefix}_l_keypoint1_joint" type="fixed">
       <axis xyz="0 0 1" />
       <!-- <origin xyz="${0.09137} ${-0.00495} 0" rpy="0 0 0" /> -->
       <origin xyz="${keypoint1_both_x} ${keypoint1_l_y} 0.0" rpy="0 0 0" />
@@ -245,7 +245,7 @@
       </collision>
     </link>
     
-    <joint name="${prefix}_r_keypoint1_joint" type="revolute">
+    <joint name="${prefix}_r_keypoint1_joint" type="fixed">
       <axis xyz="0 0 1" />
       <!-- <origin xyz="${0.09137} ${-0.00495} 0" rpy="0 0 0" /> -->
       <origin xyz="${0.071} ${-0.0032} 0.0" rpy="0 0 0" />
