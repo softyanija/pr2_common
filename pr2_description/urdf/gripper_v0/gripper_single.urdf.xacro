@@ -173,6 +173,28 @@
       </collision>
     </link>
 
+    <joint name="${side}_gripper_l_keypoint3_joint" type="fixed">
+      <axis xyz="0 0 1" />
+      <!-- <origin xyz="${0.09137} ${-0.00495} 0" rpy="0 0 0" /> -->
+      <origin xyz="${keypoint3_both_x} ${keypoint3_l_y} 0.0" rpy="0 0 0" />
+      <xacro:pr2_finger_limits_v0/>
+      <dynamics damping="${finger_tip_damping}" />
+      <parent link="${side}_gripper_l_finger_tip_link"/>
+      <child link="${side}_gripper_l_keypoint3_link"/>
+    </joint>
+    <link name="${side}_gripper_l_keypoint3_link"/>
+
+    <joint name="${side}_gripper_l_keypoint4_joint" type="fixed">
+      <axis xyz="0 0 1" />
+      <!-- <origin xyz="${0.09137} ${-0.00495} 0" rpy="0 0 0" /> -->
+      <origin xyz="${keypoint4_both_x} ${keypoint4_l_y} 0.0" rpy="0 0 0" />
+      <xacro:pr2_finger_limits_v0/>
+      <dynamics damping="${finger_tip_damping}" />
+      <parent link="${side}_gripper_l_finger_tip_link"/>
+      <child link="${side}_gripper_l_keypoint4_link"/>
+    </joint>
+    <link name="${side}_gripper_l_keypoint4_link"/>
+
     <joint name="${side}_gripper_l_joint" type="prismatic">
       <parent link="${side}_gripper_l_finger_tip_link"/>
       <child link="${side}_gripper_l_finger_tip_frame"/>
@@ -187,27 +209,6 @@
 	 this link exists twice -->
     <link name="${side}_gripper_l_finger_tip_frame" />
 
-    <joint name="${side}_gripper_l_keypoint3_joint" type="fixed">
-      <axis xyz="0 0 1" />
-      <!-- <origin xyz="${0.09137} ${-0.00495} 0" rpy="0 0 0" /> -->
-      <origin xyz="${keypoint3_both_x} ${keypoint3_l_y} 0.0" rpy="0 0 0" />
-      <xacro:pr2_finger_limits_v0/>
-      <dynamics damping="${finger_tip_damping}" />
-      <parent link="${side}_gripper_l_finger_tip_frame"/>
-      <child link="${side}_gripper_l_keypoint3_link"/>
-    </joint>
-    <link name="${side}_gripper_l_keypoint3_link"/>
-
-    <joint name="${side}_gripper_l_keypoint4_joint" type="fixed">
-      <axis xyz="0 0 1" />
-      <!-- <origin xyz="${0.09137} ${-0.00495} 0" rpy="0 0 0" /> -->
-      <origin xyz="${keypoint4_both_x} ${keypoint4_l_y} 0.0" rpy="0 0 0" />
-      <xacro:pr2_finger_limits_v0/>
-      <dynamics damping="${finger_tip_damping}" />
-      <parent link="${side}_gripper_l_finger_tip_frame"/>
-      <child link="${side}_gripper_l_keypoint4_link"/>
-    </joint>
-    <link name="${side}_gripper_l_keypoint4_link"/>
 
     <!-- Finger tip -->
 
@@ -244,6 +245,28 @@
         </geometry>
       </collision>
     </link>
+
+        <joint name="${side}_gripper_r_keypoint3_joint" type="fixed">
+      <axis xyz="0 0 1" />
+      <!-- <origin xyz="${0.09137} ${-0.00495} 0" rpy="0 0 0" /> -->
+      <origin xyz="${keypoint3_both_x} ${keypoint3_r_y} 0.0" rpy="0 0 0" />
+      <xacro:pr2_finger_limits_v0/>
+      <dynamics damping="${finger_tip_damping}" />
+      <parent link="${side}_gripper_r_finger_tip_link"/>
+      <child link="${side}_gripper_r_keypoint3_link"/>
+    </joint>
+    <link name="${side}_gripper_r_keypoint3_link"/>
+
+    <joint name="${side}_gripper_r_keypoint4_joint" type="fixed">
+      <axis xyz="0 0 1" />
+      <!-- <origin xyz="${0.09137} ${-0.00495} 0" rpy="0 0 0" /> -->
+      <origin xyz="${keypoint4_both_x} ${keypoint4_r_y} 0.0" rpy="0 0 0" />
+      <xacro:pr2_finger_limits_v0/>
+      <dynamics damping="${finger_tip_damping}" />
+      <parent link="${side}_gripper_r_finger_tip_link"/>
+      <child link="${side}_gripper_r_keypoint4_link"/>
+    </joint>
+    <link name="${side}_gripper_r_keypoint4_link"/>
     
     <joint name="${prefix}_r_keypoint1_joint" type="fixed">
       <axis xyz="0 0 1" />
@@ -434,27 +457,6 @@
 	 this link exists twice -->
     <link name="${side}_gripper_r_finger_tip_frame" />
 
-    <joint name="${side}_gripper_r_keypoint3_joint" type="fixed">
-      <axis xyz="0 0 1" />
-      <!-- <origin xyz="${0.09137} ${-0.00495} 0" rpy="0 0 0" /> -->
-      <origin xyz="${keypoint3_both_x} ${keypoint3_r_y} 0.0" rpy="0 0 0" />
-      <xacro:pr2_finger_limits_v0/>
-      <dynamics damping="${finger_tip_damping}" />
-      <parent link="${side}_gripper_r_finger_tip_frame"/>
-      <child link="${side}_gripper_r_keypoint3_link"/>
-    </joint>
-    <link name="${side}_gripper_r_keypoint3_link"/>
-
-    <joint name="${side}_gripper_r_keypoint4_joint" type="fixed">
-      <axis xyz="0 0 1" />
-      <!-- <origin xyz="${0.09137} ${-0.00495} 0" rpy="0 0 0" /> -->
-      <origin xyz="${keypoint4_both_x} ${keypoint4_r_y} 0.0" rpy="0 0 0" />
-      <xacro:pr2_finger_limits_v0/>
-      <dynamics damping="${finger_tip_damping}" />
-      <parent link="${side}_gripper_r_finger_tip_frame"/>
-      <child link="${side}_gripper_r_keypoint4_link"/>
-    </joint>
-    <link name="${side}_gripper_r_keypoint4_link"/>
 
     <!-- extensions -->
     <xacro:pr2_gripper_gazebo_v0 side="${side}" />
